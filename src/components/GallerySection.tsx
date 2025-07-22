@@ -9,6 +9,7 @@ const GallerySection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,38 +32,38 @@ const GallerySection = () => {
       src: thermalFurnace,
       title: "High-Temperature Furnace",
       category: "Manufacturing",
-      description: "Advanced thermal processing equipment"
+      description: "Advanced thermal processing equipment",
     },
     {
       src: vacuumPump,
       title: "Vacuum Pump System",
       category: "Equipment",
-      description: "Industrial vacuum technology"
+      description: "Industrial vacuum technology",
     },
     {
       src: processInstrumentation,
       title: "Process Control",
       category: "Instrumentation",
-      description: "Precision measurement systems"
+      description: "Precision measurement systems",
     },
     {
       src: thermalFurnace,
       title: "Laboratory Setup",
       category: "Research",
-      description: "R&D facility equipment"
+      description: "R&D facility equipment",
     },
     {
       src: vacuumPump,
       title: "Installation Project",
       category: "Services",
-      description: "On-site equipment installation"
+      description: "On-site equipment installation",
     },
     {
       src: processInstrumentation,
       title: "Quality Testing",
       category: "Quality",
-      description: "Rigorous testing procedures"
-    }
+      description: "Rigorous testing procedures",
+    },
   ];
 
   const nextImage = () => {
@@ -79,6 +80,7 @@ const GallerySection = () => {
 
   const closeModal = () => {
     setSelectedImage(null);
+    setSelectedVideo(null);
   };
 
   return (
@@ -114,7 +116,7 @@ const GallerySection = () => {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
-                
+
                 {/* Image Info Overlay */}
                 <div className="absolute bottom-6 left-6 right-6">
                   <div className="glass-effect rounded-lg p-4">
@@ -231,8 +233,11 @@ const GallerySection = () => {
               See our equipment and processes in action
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Video Placeholders */}
-              <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center group cursor-pointer hover:bg-muted/50 transition-colors">
+              {/* Video 1 */}
+              <div
+                className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center group cursor-pointer hover:bg-muted/50 transition-colors"
+                onClick={() => setSelectedVideo("https://www.youtube.com/embed/323FdedPm2g")}
+              >
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/30 transition-colors">
                     <div className="w-0 h-0 border-l-8 border-t-4 border-b-4 border-transparent border-l-primary ml-1"></div>
@@ -240,7 +245,12 @@ const GallerySection = () => {
                   <p className="text-sm text-muted-foreground">Gas Flow Meters Demo</p>
                 </div>
               </div>
-              <div className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center group cursor-pointer hover:bg-muted/50 transition-colors">
+
+              {/* Video 2 */}
+              <div
+                className="aspect-video bg-muted/30 rounded-lg flex items-center justify-center group cursor-pointer hover:bg-muted/50 transition-colors"
+                onClick={() => setSelectedVideo("https://www.youtube.com/embed/Goyn9bQbYIU")}
+              >
                 <div className="text-center">
                   <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/30 transition-colors">
                     <div className="w-0 h-0 border-l-8 border-t-4 border-b-4 border-transparent border-l-primary ml-1"></div>
@@ -265,6 +275,33 @@ const GallerySection = () => {
               alt="Gallery Image"
               className="w-full h-auto max-h-screen object-contain rounded-lg shadow-glow"
             />
+            <Button
+              size="icon"
+              variant="secondary"
+              onClick={closeModal}
+              className="absolute top-4 right-4 glass-effect"
+            >
+              ×
+            </Button>
+          </div>
+        </div>
+      )}
+
+      {/* Video Modal */}
+      {selectedVideo && (
+        <div
+          className="fixed inset-0 bg-background/90 backdrop-blur-lg z-50 flex items-center justify-center p-4"
+          onClick={closeModal}
+        >
+          <div className="relative w-full max-w-4xl aspect-video">
+            <iframe
+              className="w-full h-full rounded-lg"
+              src={selectedVideo}
+              title="YouTube Video"
+              frameBorder="0"
+              allow="autoplay; encrypted-media"
+              allowFullScreen
+            ></iframe>
             <Button
               size="icon"
               variant="secondary"
