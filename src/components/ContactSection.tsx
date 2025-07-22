@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"; 
 import { Mail, Phone, MapPin, Send, Clock, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -116,8 +116,8 @@ const ContactSection = () => {
                 Get In Touch
               </h3>
               <p className="text-muted-foreground leading-relaxed">
-                Our team of vacuum and flow specialists is always ready to connect with you 
-                promptly to understand your requirements and deliver tailored solutions with 
+                Our team of vacuum and flow specialists is always ready to connect with you
+                promptly to understand your requirements and deliver tailored solutions with
                 efficiency and expertise.
               </p>
             </div>
@@ -310,6 +310,7 @@ const ContactSection = () => {
                   <Button
                     variant="outline"
                     className="mt-4 glass-effect hover:glow-effect"
+                    onClick={() => window.open("https://maps.app.goo.gl/n4MDTS3X6Wf9JbgJ7?g_st=ac", "_blank")}
                   >
                     Get Directions
                   </Button>
